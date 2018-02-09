@@ -27,7 +27,7 @@ import com.oltpbenchmark.benchmarks.ycsb.YCSBConstants;
 
 public class ReadRecord extends Procedure{
     public final SQLStmt readStmt = new SQLStmt(
-        "SELECT * FROM USERTABLE WHERE YCSB_KEY=?"
+        "SELECT YCSB_KEY FROM USERTABLE WHERE YCSB_KEY=?"
     );
     
 	//FIXME: The value in ysqb is a byteiterator
