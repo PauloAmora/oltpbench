@@ -72,7 +72,7 @@ public class YCSBLoader extends Loader<YCSBBenchmark> {
         for (int i = start; i < stop; i++) {
             stmt.setInt(1, i);
             for (int j = 2; j <= 11; j++) {
-                stmt.setString(j, TextGenerator.randomStr(rng(), 100));
+                stmt.setInt(j, rng().nextInt());//setString(j, TextGenerator.randomStr(rng(), 100));
             }
             stmt.addBatch();
             total++;
