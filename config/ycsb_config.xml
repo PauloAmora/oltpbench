@@ -2,13 +2,13 @@
 <parameters>
     <dbtype>postgres</dbtype>
     <driver>org.postgresql.Driver</driver>
-	<DBUrl>jdbc:postgresql://localhost:15721/postgres</DBUrl>
+	<DBUrl>jdbc:postgresql://localhost:15721/default_database</DBUrl>
     <DBName>postgres</DBName>
     <username>postgres</username>
     <password>postgres</password>
     <isolation>TRANSACTION_READ_COMMITTED</isolation>
     <!-- Scalefactor in YCSB is *1000 the number of rows in the USERTABLE-->
-    <scalefactor>1</scalefactor>
+    <scalefactor>5</scalefactor>
 
     <!-- The workload -->
     <terminals>2</terminals>

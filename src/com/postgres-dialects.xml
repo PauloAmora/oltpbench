@@ -2,20 +2,8 @@
 <dialects>
     <dialect type="POSTGRES">
         <procedure name="ReadRecord">
-<statement name="readStmt1">
-SELECT field0 FROM USERTABLE WHERE YCSB_KEY=?
-            </statement>
-<statement name="readStmt2">
-SELECT field2, field4 FROM USERTABLE WHERE YCSB_KEY=?
-            </statement>
-<statement name="readStmt3">
-             SELECT field1, field2, field3 FROM USERTABLE WHERE YCSB_KEY=?
-            </statement>
-<statement name="readStmt4">
-               SELECT field1, field2, field6, field7 FROM USERTABLE WHERE YCSB_KEY=?
-            </statement>
-<statement name="readStmt5">
-           SELECT field0, field1, field5, field8, field9 FROM USERTABLE WHERE YCSB_KEY=?
+            <statement name="readStmt">
+                SELECT * FROM USERTABLE WHERE YCSB_KEY=?
             </statement>
         </procedure>
         <procedure name="ScanRecord">

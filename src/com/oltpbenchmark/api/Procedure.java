@@ -223,6 +223,13 @@ public abstract class Procedure {
                     if (o instanceof SQLStmt) {
                         stmts.put(f.getName(), (SQLStmt)o);
                     }
+                   if(o instanceof SQLStmt[]){
+                	   int i = 1;
+                    	for (SQLStmt s : (SQLStmt[])o){
+                    		stmts.put("readStmt"+i, (SQLStmt)s);
+                    		i++;
+                    	}
+                    }
                 } catch (Exception ex) {
                     throw new RuntimeException("Failed to retrieve " + f + " from " + c.getSimpleName(), ex);
                 }
