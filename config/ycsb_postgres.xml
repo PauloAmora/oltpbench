@@ -2,19 +2,19 @@
 <parameters>
     <dbtype>postgres</dbtype>
     <driver>org.postgresql.Driver</driver>
-	<DBUrl>jdbc:postgresql://localhost:15721/default_database</DBUrl>
-    <DBName>postgres</DBName>
-    <username>postgres</username>
+	<DBUrl>jdbc:postgresql://localhost:5432/ycsb</DBUrl>
+    <DBName>ycsb</DBName>
+    <username>oltpbench</username>
     <password>postgres</password>
     <isolation>TRANSACTION_READ_COMMITTED</isolation>
     <!-- Scalefactor in YCSB is *1000 the number of rows in the USERTABLE-->
     <scalefactor>500</scalefactor>
 
     <!-- The workload -->
-    <terminals>16</terminals>
+    <terminals>4</terminals>
     <works>
         <work>
-          <time>60</time>
+          <time>30</time>
           <rate>unlimited</rate>
           <weights>100,0,0,0,0,0</weights>
         </work>
