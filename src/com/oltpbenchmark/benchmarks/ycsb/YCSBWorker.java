@@ -31,6 +31,8 @@ import com.oltpbenchmark.benchmarks.ycsb.procedures.ReadRecord;
 import com.oltpbenchmark.benchmarks.ycsb.procedures.ScanRecord;
 import com.oltpbenchmark.benchmarks.ycsb.procedures.UpdateRecord;
 import com.oltpbenchmark.distributions.CounterGenerator;
+import com.oltpbenchmark.distributions.ScrambledZipfianGenerator;
+import com.oltpbenchmark.distributions.UniformGenerator;
 import com.oltpbenchmark.distributions.ZipfianGenerator;
 import com.oltpbenchmark.types.TransactionStatus;
 import com.oltpbenchmark.util.TextGenerator;
@@ -43,7 +45,7 @@ import com.oltpbenchmark.util.TextGenerator;
  */
 public class YCSBWorker extends Worker<YCSBBenchmark> {
 
-    private ZipfianGenerator readRecord;
+    private UniformGenerator readRecord;
     private static CounterGenerator insertRecord;
     private ZipfianGenerator randScan;
 
@@ -60,7 +62,7 @@ public class YCSBWorker extends Worker<YCSBBenchmark> {
     
     public YCSBWorker(YCSBBenchmark benchmarkModule, int id, int init_record_count) {
         super(benchmarkModule, id);
-        readRecord = new ZipfianGenerator(init_record_count);// pool for read keys
+        readRecord = new UniformGenerator(init_record_count);// pool for read keys
         randScan = new ZipfianGenerator(YCSBConstants.MAX_SCAN);
         
         synchronized (YCSBWorker.class) {
@@ -119,6 +121,7 @@ public class YCSBWorker extends Worker<YCSBBenchmark> {
     private void readRecord() throws SQLException {
         assert (this.procReadRecord != null);
         int keyname = readRecord.nextInt();
+     //   System.out.println("SELECT KEY: "+keyname);
         this.procReadRecord.run(conn, keyname, this.results);
     }
 
