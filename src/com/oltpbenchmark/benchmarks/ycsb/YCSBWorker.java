@@ -121,7 +121,7 @@ public class YCSBWorker extends Worker<YCSBBenchmark> {
     private void readRecord() throws SQLException {
         assert (this.procReadRecord != null);
         int keyname = readRecord.nextInt();
-     //   System.out.println("SELECT KEY: "+keyname);
+       // System.out.println("SELECT KEY: "+keyname);
         this.procReadRecord.run(conn, keyname, this.results);
     }
 

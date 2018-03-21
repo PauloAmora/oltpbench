@@ -8,13 +8,13 @@
     <password>postgres</password>
     <isolation>TRANSACTION_READ_COMMITTED</isolation>
     <!-- Scalefactor in YCSB is *1000 the number of rows in the USERTABLE-->
-    <scalefactor>2</scalefactor>
+    <scalefactor>50</scalefactor>
 
     <!-- The workload -->
-    <terminals>4</terminals>
+    <terminals>6</terminals>
     <works>
         <work>
-          <time>60</time>
+          <time>120</time>
           <rate>unlimited</rate>
           <weights>100,0,0,0,0,0</weights>
         </work>

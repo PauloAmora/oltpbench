@@ -36,18 +36,20 @@ public class ReadRecord extends Procedure {
 			new SQLStmt("SELECT field1, field2, field6, field7 FROM USERTABLE WHERE YCSB_KEY=?"),
 			new SQLStmt("SELECT field0, field1, field5, field8, field9 FROM USERTABLE WHERE YCSB_KEY=?") };
 
-	Random r = new Random();
+	//Random r = new Random();
+	int rs= 0;
 
 	// FIXME: The value in ysqb is a byteiterator
 	public void run(Connection conn, int keyname, String results[]) throws SQLException {
 
-		int idx = r.nextInt(5);
+		int idx = rs%5;
+		rs++;
 		PreparedStatement stmt = this.getPreparedStatement(conn, readStmts[idx]);
 		stmt.setInt(1, keyname);
 		ResultSet r = stmt.executeQuery();
 		while (r.next()) {
 			for (int i = 0; i < idx; i++)
-				results[i] = r.getString(i + 1);
+				results[i] = r.getString(i+1);
 		} // WHILE
 		r.close();
 	}

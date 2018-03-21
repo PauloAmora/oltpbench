@@ -52,6 +52,7 @@ public class UniformGenerator extends IntegerGenerator
 	 */
 	public int nextInt(int itemcount)
 	{
+//		System.out.println("ItemCount: "+itemcount+" Base: "+base);
 		return r.nextInt(itemcount-base) + base;
 	}
 

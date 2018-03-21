@@ -19,6 +19,7 @@ package com.oltpbenchmark.benchmarks.ycsb.procedures;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Random;
 
 import com.oltpbenchmark.api.Procedure;
 import com.oltpbenchmark.api.SQLStmt;
@@ -32,8 +33,10 @@ public class InsertRecord extends Procedure {
     public void run(Connection conn, int keyname, String vals[]) throws SQLException {
         PreparedStatement stmt = this.getPreparedStatement(conn, this.insertStmt);
         stmt.setInt(1, keyname);
+	Random r = new Random();
         for (int i = 0; i < vals.length; i++) {
-            stmt.setString(i + 2, vals[i]);
+       //     stmt.setString(i + 2, vals[i]);
+	stmt.setInt(i+2, r.nextInt());
         }
         stmt.executeUpdate();
     }
