@@ -27,8 +27,8 @@ import com.oltpbenchmark.benchmarks.ycsb.YCSBConstants;
 public class UpdateRecord extends Procedure {
     
     public final SQLStmt updateAllStmt = new SQLStmt(
-        "UPDATE USERTABLE SET FIELD1=?,FIELD2=?,FIELD3=?,FIELD4=?,FIELD5=?," +
-        "FIELD6=?,FIELD7=?,FIELD8=?,FIELD9=?,FIELD10=? WHERE YCSB_KEY=?"
+        "UPDATE USERTABLE SET FIELD0=?, FIELD1=?,FIELD2=?,FIELD3=?,FIELD4=?,FIELD5=?," +
+        "FIELD6=?,FIELD7=?,FIELD8=?,FIELD9=? WHERE YCSB_KEY=?"
     );
     
     public void run(Connection conn, int keyname, String vals[]) throws SQLException {

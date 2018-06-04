@@ -310,7 +310,7 @@ public class ZipfianGenerator extends IntegerGenerator
 	@Override
 	public int nextInt() 
 	{
-		return (int)nextLong(items);
+		return (int)(items-1) - (int)nextLong(items);
 	}
 
 	/**
