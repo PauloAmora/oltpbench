@@ -2,14 +2,13 @@
 <parameters>
 
     <!-- Connection details -->
-    <dbtype>mysql</dbtype>
-    <driver>com.mysql.jdbc.Driver</driver>
-    <DBUrl>jdbc:mysql://server:3306/ycsb</DBUrl>
-    <username>user</username>
-    <password>password</password>
-    <isolation>TRANSACTION_SERIALIZABLE</isolation>
-    <uploadCode></uploadCode>
-    <uploadUrl></uploadUrl>
+    <!-- Connection details -->
+    <dbtype>postgres</dbtype>
+    <driver>org.postgresql.Driver</driver>
+    <DBUrl>jdbc:postgresql://localhost:5432/ycsb</DBUrl>
+    <username>postgres</username>
+    <password>root</password>
+    <isolation>TRANSACTION_READ_COMMITTED</isolation>
     <!-- Scalefactor in YCSB is *1000 the number of rows in the USERTABLE-->
     <scalefactor>1200</scalefactor>
     
@@ -19,7 +18,7 @@
         <work>
           <time>300</time>
           <rate>10000</rate>
-          <weights>50,5,15,10,10,10</weights>
+          <weights>0,25,0,50,25,0</weights>
         </work>
     </works>
 

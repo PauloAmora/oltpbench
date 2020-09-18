@@ -25,6 +25,7 @@ import com.oltpbenchmark.api.SQLStmt;
 public class DeleteRecord extends Procedure{
     public final SQLStmt deleteStmt = new SQLStmt(
         "DELETE FROM USERTABLE where YCSB_KEY=?"
+        //"SELECT my_delete(?)"
     );
     
 	//FIXME: The value in ysqb is a byteiterator
