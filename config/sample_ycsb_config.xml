@@ -6,8 +6,8 @@
     <dbtype>postgres</dbtype>
     <driver>org.postgresql.Driver</driver>
     <DBUrl>jdbc:postgresql://localhost:5432/ycsb</DBUrl>
-    <username>postgres</username>
-    <password>root</password>
+    <username>ycsb</username>
+    <password>ycsb</password>
     <isolation>TRANSACTION_READ_COMMITTED</isolation>
     <!-- Scalefactor in YCSB is *1000 the number of rows in the USERTABLE-->
     <scalefactor>1200</scalefactor>
@@ -18,7 +18,7 @@
         <work>
           <time>300</time>
           <rate>10000</rate>
-          <weights>0,25,0,50,25,0</weights>
+          <weights>30,30,8,0,2,30</weights>
         </work>
     </works>
 

@@ -19,20 +19,32 @@ package com.oltpbenchmark.benchmarks.ycsb.procedures;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Random;
+
 import com.oltpbenchmark.api.Procedure;
 import com.oltpbenchmark.api.SQLStmt;
 
 public class DeleteRecord extends Procedure{
-    public final SQLStmt deleteStmt = new SQLStmt(
-        "DELETE FROM USERTABLE where YCSB_KEY=?"
-        //"SELECT my_delete(?)"
+    public final SQLStmt retrieveStmt = new SQLStmt(
+        "select retrieve_records(?)"
     );
+    
+    public final SQLStmt deleteStmt = new SQLStmt(
+            "select delete_records(?)"
+        );
     
 	//FIXME: The value in ysqb is a byteiterator
     public void run(Connection conn, int keyname) throws SQLException {
-        PreparedStatement stmt = this.getPreparedStatement(conn, deleteStmt);
-        stmt.setInt(1, keyname);          
-        stmt.executeUpdate();
+    	Random r = new Random();
+    	if(r.nextDouble() - 0.8 >= 0.0) {
+    		 PreparedStatement stmt = this.getPreparedStatement(conn, deleteStmt);
+    	        stmt.setInt(1, keyname);          
+    	        stmt.execute();
+    	} else {
+    		 PreparedStatement stmt = this.getPreparedStatement(conn, retrieveStmt);
+ 	        stmt.setInt(1, keyname);          
+ 	        stmt.execute();
+    	}
     }
 
 }

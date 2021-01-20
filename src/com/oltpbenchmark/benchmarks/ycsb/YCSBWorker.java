@@ -126,7 +126,7 @@ public class YCSBWorker extends Worker<YCSBBenchmark> {
         assert (this.procReadModifyWriteRecord != null);
         int keyname = readRecord.nextInt();
         this.buildParameters();
-        this.procReadModifyWriteRecord.run(conn, keyname, this.params, this.results);
+        this.procReadModifyWriteRecord.run(conn, keyname, this.results);
     }
 
     private void insertRecord() throws SQLException {

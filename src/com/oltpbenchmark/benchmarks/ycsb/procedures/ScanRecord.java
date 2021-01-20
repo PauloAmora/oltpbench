@@ -21,24 +21,40 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
 import com.oltpbenchmark.api.Procedure;
 import com.oltpbenchmark.api.SQLStmt;
-import com.oltpbenchmark.benchmarks.ycsb.YCSBConstants;
 
 public class ScanRecord extends Procedure{
-    public final SQLStmt scanStmt = new SQLStmt(
-        "SELECT * FROM USERTABLE WHERE YCSB_KEY>? AND YCSB_KEY<?"
+    public final SQLStmt scanStmt1 = new SQLStmt(
+        "SELECT * FROM SYSTEM1 WHERE ID>? AND ID<?"
     );
+    public final SQLStmt scanStmt2 = new SQLStmt(
+            "SELECT * FROM SYSTEM2 WHERE ID>? AND ID<?"
+        );
+    public final SQLStmt scanStmt3 = new SQLStmt(
+            "SELECT * FROM SYSTEM3 WHERE ID>? AND ID<?"
+        );
     
 	//FIXME: The value in ysqb is a byteiterator
     public void run(Connection conn, int start, int count, List<String[]> results) throws SQLException {
-        PreparedStatement stmt = this.getPreparedStatement(conn, scanStmt);
+    	SQLStmt scanStmt;
+    	Random rand = new Random();
+    	int k = rand.nextInt();
+    	if(k%3 == 0) {
+    		scanStmt = scanStmt1;
+    	} else if (k%3 == 1) {
+    		scanStmt = scanStmt2;
+    	} else {
+    		scanStmt = scanStmt3;
+    	}
+    	PreparedStatement stmt = this.getPreparedStatement(conn, scanStmt);
         stmt.setInt(1, start); 
         stmt.setInt(2, start+count); 
         ResultSet r=stmt.executeQuery();
         while(r.next()) {
-            String data[] = new String[YCSBConstants.NUM_FIELDS];
+            String data[] = new String[2];
         	for(int i = 0; i < data.length; i++)
         		data[i] = r.getString(i+1);
         	results.add(data);

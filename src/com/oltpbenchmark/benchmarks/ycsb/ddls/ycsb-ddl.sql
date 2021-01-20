@@ -1,14 +1,28 @@
-DROP TABLE IF EXISTS USERTABLE;
-CREATE TABLE USERTABLE (
-    YCSB_KEY INT PRIMARY KEY,
-    FIELD1 VARCHAR(100), 
-  	FIELD2 VARCHAR(100),
-  	FIELD3 VARCHAR(100), 
-  	FIELD4 VARCHAR(100),
-  	FIELD5 VARCHAR(100), 
-  	FIELD6 VARCHAR(100),
-  	FIELD7 VARCHAR(100), 
-  	FIELD8 VARCHAR(100),
-  	FIELD9 VARCHAR(100), 
-  	FIELD10 VARCHAR(100)
-);
+DROP TABLE IF EXISTS SYSTEM1;
+DROP TABLE IF EXISTS SYSTEM2;
+DROP TABLE IF EXISTS SYSTEM3;
+DROP TABLE IF EXISTS MASTER_RECORD;
+create table SYSTEM1
+(
+    id integer, 
+    field0 varchar(100), 
+    field1 varchar(100)
+    );
+create table SYSTEM2
+(
+    id integer, 
+    field0 varchar(100), 
+    field1 varchar(100)
+    );
+create table SYSTEM3
+(
+    id integer, 
+    field0 varchar(100), 
+    field1 varchar(100)
+    );
+create table MASTER_RECORD
+(
+    id integer, 
+    system varchar(100), 
+    id_system integer
+    );

@@ -119,7 +119,7 @@ public class WorkloadState {
    }
    
    /** Called by ThreadPoolThreads when waiting for work. */
-    public SubmittedProcedure fetchWork(int workerId) {
+    public SubmittedProcedure fetchWork() {
         synchronized(this) {
             if (currentPhase != null && currentPhase.isSerial()) {
                 ++workersWaiting;
@@ -136,7 +136,7 @@ public class WorkloadState {
                     return null;
 
                 ++workersWorking;
-                return new SubmittedProcedure(currentPhase.chooseTransaction(getGlobalState() == State.COLD_QUERY, workerId));
+                return new SubmittedProcedure(currentPhase.chooseTransaction(getGlobalState() == State.COLD_QUERY));
             }
         }
 
@@ -147,7 +147,7 @@ public class WorkloadState {
             synchronized(this) {
                 ++workersWorking;
             }
-            return new SubmittedProcedure(currentPhase.chooseTransaction(getGlobalState() == State.COLD_QUERY, workerId));
+            return new SubmittedProcedure(currentPhase.chooseTransaction(getGlobalState() == State.COLD_QUERY));
         }
 
         synchronized(this) {

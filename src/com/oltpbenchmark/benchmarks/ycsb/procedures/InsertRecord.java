@@ -18,24 +18,27 @@ package com.oltpbenchmark.benchmarks.ycsb.procedures;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.oltpbenchmark.api.Procedure;
 import com.oltpbenchmark.api.SQLStmt;
+import com.oltpbenchmark.benchmarks.ycsb.YCSBConstants;
 
 public class InsertRecord extends Procedure {
-    public final SQLStmt insertStmt = new SQLStmt(
-        "INSERT INTO USERTABLE VALUES (?,?,?,?,?,?,?,?,?,?,?)"
-    );
-
-    // FIXME: The value in ysqb is a byteiterator
-    public void run(Connection conn, int keyname, String vals[]) throws SQLException {
-        PreparedStatement stmt = this.getPreparedStatement(conn, this.insertStmt);
-        stmt.setInt(1, keyname);
-        for (int i = 0; i < vals.length; i++) {
-            stmt.setString(i + 2, vals[i]);
-        }
-        stmt.executeUpdate();
-    }
-
+	public final SQLStmt readStmt = new SQLStmt(
+	        "SELECT * FROM SYSTEM1 WHERE ID=?"
+	    );
+	    
+		//FIXME: The value in ysqb is a byteiterator
+	    public void run(Connection conn, int keyname, String results[]) throws SQLException {
+	        PreparedStatement stmt = this.getPreparedStatement(conn, readStmt);
+	        stmt.setInt(1, keyname);          
+	        ResultSet r = stmt.executeQuery();
+	        while(r.next()) {
+	            for (int i = 0; i < 2; i++)
+	                results[i] = r.getString(i+1);
+	        } // WHILE
+	        r.close();
+	    }
 }
